@@ -6,6 +6,19 @@ const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
 
 module.exports = {
   outputDir: './build',
+  //解决跨域访问问题
+  devServer: {
+    proxy: {
+      '^/api': {
+        target: 'http://123.207.32.32:5000', //'http://152.136.185.210:5000',
+        pathRewrite: {
+          '^/api': ''
+        },
+        changeOrigin: true
+      }
+    }
+  },
+
   //配置1
   configureWebpack: {
     resolve: {

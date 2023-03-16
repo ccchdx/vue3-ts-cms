@@ -12,6 +12,7 @@ import 'element-plus/theme-chalk/el-loading.css'
 
 import router from './router'
 import store from './store'
+import { setupStore } from './store'
 
 const app = createApp(App)
 
@@ -19,7 +20,7 @@ app.use(router)
 app.use(store)
 //app.use(ElementPlus)
 app.mount('#app')
-
+setupStore()
 // interface DataType {
 //   data: any
 //   returnCode: string

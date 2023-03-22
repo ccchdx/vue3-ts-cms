@@ -52,12 +52,13 @@ const loginModule: Module<ILoginState, IRootState> = {
       const userMenusResult = await requestMenusByRoleId(userInfo.role.id)
       const userMenus = userMenusResult.data
       commit('changeUserMenus', userMenus)
-      localCache.setCache('changeUserMenus', userMenus)
+      localCache.setCache('userMenus', userMenus)
 
       //4.跳到首页
       router.push('/main')
     },
 
+    //将本地将数据重新存储到vuex
     loadLocalLogin({ commit }) {
       const token = localCache.getCache('token')
       if (token) {

@@ -2,21 +2,39 @@
   <div class="nav-menu">
     <div class="logo">
       <img class="img" src="~@/assets/img/logo.svg" alt="logo" />
-      <span class="title">Vue3+Ts</span>
+      <span v-if="!collapses" class="title">Vue3+Ts</span>
     </div>
-    <el-menu default-active="2" class="el-menu-vertical">
+    <el-menu
+      default-active="2"
+      class="el-menu-vertical"
+      :collapse="collapses"
+      background-color="#0c2135"
+      text-color="#b7bdc3"
+      active-text-color="#0a60bd"
+    >
       <template v-for="item in userMenus" :key="item.id">
         <!-- 二级菜单 -->
         <template v-if="item.type === 1">
           <!-- 二级菜单可以展开的标题 -->
-          <el-sub-menu>
+          <el-sub-menu :index="item.id + ''">
             <template #title>
-              <i v-if="item.icon" :class="item.icon"></i>
+              <template v-if="item.icon === 'el-icon-monitor'">
+                <el-icon><Monitor /></el-icon>
+              </template>
+              <template v-else-if="item.icon === 'el-icon-setting'">
+                <el-icon><Setting /></el-icon>
+              </template>
+              <template v-else-if="item.icon === 'el-icon-goods'">
+                <el-icon><Goods /></el-icon>
+              </template>
+              <template v-else-if="item.icon === 'el-icon-chat-line-round'">
+                <el-icon><ChatLineRound /></el-icon>
+              </template>
               <span>{{ item.name }}</span>
             </template>
             <!-- 遍历里面的item -->
             <template v-for="subitem in item.children" :key="subitem.id">
-              <el-menu-item>
+              <el-menu-item :index="subitem.id + ''">
                 <i v-if="subitem.icon" :class="subitem.icon"></i>
                 <span>{{ subitem.name }}</span>
               </el-menu-item>
@@ -41,6 +59,12 @@ import { defineComponent, computed } from 'vue'
 import { useStore } from '@/store'
 
 export default defineComponent({
+  props: {
+    collapses: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup() {
     const store = useStore()
     const userMenus = computed(() => store.state.login.userMenus)

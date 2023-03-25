@@ -11,6 +11,7 @@ import router from '@/router'
 import { IAccount } from '@/service/login/types'
 import { ILoginState } from './types'
 import { IRootState } from '../types'
+import { mapMenusToRouters } from '@/utils/map-menus'
 
 const loginModule: Module<ILoginState, IRootState> = {
   namespaced: true,
@@ -31,6 +32,12 @@ const loginModule: Module<ILoginState, IRootState> = {
     },
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
+      //userMenus => routes
+      const routes = mapMenusToRouters(userMenus)
+      //routes => router.main.children,将每一个route添加为mian的子路由，这样就注册了所有route
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
     }
   },
   actions: {

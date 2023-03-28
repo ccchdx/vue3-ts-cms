@@ -60,6 +60,7 @@
 import { defineComponent, computed } from 'vue'
 //login的useStore
 import { useStore } from '@/store'
+//import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 
 export default defineComponent({
@@ -72,7 +73,6 @@ export default defineComponent({
   setup() {
     const store = useStore()
     const userMenus = computed(() => store.state.login.userMenus)
-
     const router = useRouter()
     const handleMenuItemClick = (item: any) => {
       router.push({

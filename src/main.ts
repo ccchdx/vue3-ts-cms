@@ -9,6 +9,7 @@ import './service/axios_demo'
 //全局映入
 // import ElementPlus from 'element-plus'
 import 'element-plus/theme-chalk/el-loading.css'
+
 //全局注册icons
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
@@ -18,11 +19,11 @@ import { setupStore } from './store'
 
 const app = createApp(App)
 
+setupStore()
 app.use(router)
 app.use(store)
 //app.use(ElementPlus)
 app.mount('#app')
-setupStore()
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)

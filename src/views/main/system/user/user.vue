@@ -1,12 +1,12 @@
 <template>
   <div class="user">
-    <hy-form v-bind="searchFormConfig"></hy-form>
+    <hy-form v-bind="searchFormConfig" v-model="formDate"></hy-form>
     <div class="content"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 import HyForm from '@/base-ui/form'
 
 import { searchFormConfig } from './config/search.config'
@@ -17,8 +17,16 @@ export default defineComponent({
   },
   name: 'user',
   setup() {
+    const formDate = ref({
+      id: '',
+      name: '',
+      password: '',
+      sport: '',
+      createTime: ''
+    })
     return {
-      searchFormConfig
+      searchFormConfig,
+      formDate
     }
   }
 })

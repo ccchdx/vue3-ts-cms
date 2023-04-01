@@ -1,6 +1,9 @@
 <!-- 用户管理user.vue的子组件 -->
 <template>
   <div class="hy-form">
+    <div class="header">
+      <slot name="header"></slot>
+    </div>
     <el-form :label-width="labelWidth">
       <!-- row col组件 网格布局 -->
       <el-row>
@@ -54,6 +57,9 @@
         </template>
       </el-row>
     </el-form>
+    <div class="footer">
+      <slot name="footer"></slot>
+    </div>
   </div>
 </template>
 

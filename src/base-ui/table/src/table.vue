@@ -15,7 +15,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
+import { IListData } from './types'
 
 export default defineComponent({
   props: {
@@ -24,7 +25,7 @@ export default defineComponent({
       require: true
     },
     propList: {
-      type: Array,
+      type: Array as PropType<IListData[]>,
       require: true
     }
   },

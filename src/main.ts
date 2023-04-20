@@ -18,6 +18,14 @@ import router from './router'
 import store from './store'
 import { setupStore } from './store'
 
+//app.config.globalProperties.$filters全局挂载过滤器方法，template模板中使用时ts报错（找不到名称“$filters”）
+//原因是我使用了volar插件，它会对template里面进行ts验证，因此需要写以下声明文件来写明类型
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $filters: any
+  }
+}
+
 const app = createApp(App)
 
 app.use(globalRegister)
